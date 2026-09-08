@@ -21,9 +21,8 @@ def draw_grass_on_screen():
     for index in range(consts.MINES_COUNT):
         screen.blit(image_grass,[random_x(),random_y()])
 
-def draw_soldier():
+def draw_day_soldier():
 
-    pass
 
 def draw_matrix():
 
