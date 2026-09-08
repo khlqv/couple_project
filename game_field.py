@@ -64,4 +64,4 @@ def print_matrix(matrix):
 create()
 fill_mines()
 put_flag()
-print_matrix(field_grid)
+#print_matrix(field_grid)
