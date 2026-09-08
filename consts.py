@@ -1,6 +1,3 @@
-# consts.py
-BOARD_ROWS = 25
-FLAG_ROWS = 3
 
 # consts.py
 BOARD_ROWS = 25
@@ -23,12 +20,11 @@ flag_col = BOARD_COLS - FLAG_COLS
 MINES_COUNT = 20
 MINE_ROWS = 1
 MINE_COLS = 3
-# game_field.py
-flag_row = BOARD_ROWS - FLAG_ROWS
 
 MINE="MINE"
 FREE="FREE"
 FLAG="FLAG"
+SOLDIER="SOLIDER"
 #color
 BLACK = (0, 0, 0)
 

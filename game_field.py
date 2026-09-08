@@ -2,6 +2,8 @@
 import consts
 import random
 
+import player_action
+
 flag_row = consts.BOARD_ROWS - consts.FLAG_ROWS
 flag_col = consts.BOARD_COLS - consts.FLAG_COLS
 
@@ -35,10 +37,13 @@ def fill_mines():
         x_random = random.randint(consts.SOLDIER_COLS,
                                   consts.BOARD_COLS - 3) - 1
         y_random = random.randint(consts.SOLDIER_ROWS, consts.BOARD_ROWS) - 1
-        if field_grid[y_random][x_random] == consts.FREE and is_free_from_mine(y_random,x_random):
+        if field_grid[y_random][x_random] == consts.FREE and is_free_from_mine(
+                y_random, x_random):
             put_mine(y_random, x_random)
         else:
-            while field_grid[y_random][x_random] != consts.FREE or not is_free_from_mine(y_random,x_random):
+            while field_grid[y_random][
+                x_random] != consts.FREE or not is_free_from_mine(y_random,
+                                                                  x_random):
                 x_random = random.randint(consts.SOLDIER_COLS,
                                           consts.BOARD_COLS)
                 y_random = random.randint(consts.SOLDIER_ROWS,
@@ -54,6 +59,12 @@ def put_flag():
             field_grid[col][row] = consts.FLAG
 
 
+def put_soldier():
+    for row in range(consts.SOLDIER_ROWS):
+        for col in range(consts.SOLDIER_COLS):
+            field_grid[row][col] = consts.SOLDIER
+
+
 def print_matrix(matrix):
     for row in matrix:
         for col in row:
@@ -64,4 +75,9 @@ def print_matrix(matrix):
 create()
 fill_mines()
 put_flag()
-print_matrix(field_grid)
+put_soldier()
+# print_matrix(field_grid)
+
+for row in field_grid:
+    print(row)
+exit()
