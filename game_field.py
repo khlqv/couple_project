@@ -84,10 +84,3 @@ def print_matrix(matrix):
             print(col, end=" ")
         print()
 
-create()
-fill_mines()
-put_flag()
-print_matrix(field_grid)
-update_soldier((5,5))
-print_matrix(field_grid)
-# handle_user_events(5,5)

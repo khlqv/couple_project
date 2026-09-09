@@ -18,8 +18,11 @@ def main():
 
 
 def handle_user_events(solider_loc):
-    col=solider_loc[1]
-    row=solider_loc[0]
+    row = solider_loc[0]
+    col = solider_loc[1]
+
+    grid_visible = False   # האם כרגע מציגים את מסך המוקשים
+    grid_shown_at = 0
 
     while True:
         for event in pygame.event.get():
@@ -37,21 +40,19 @@ def handle_user_events(solider_loc):
                 if event.key in (pygame.K_LEFT, pygame.K_a):
                     col -= 1
                 if event.key in (pygame.K_RIGHT, pygame.K_d):
-                    row -= 1
-            grid_visible = False  # האם כרגע מציגים את מסך המוקשים
-            grid_shown_at = 0
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
-                grid_visible = True
-                grid_shown_at = pygame.time.get_ticks()
+                    col += 1
+                if event.key == pygame.K_RETURN:
+                    grid_visible = True
+                    grid_shown_at = pygame.time.get_ticks()
 
-            if grid_visible and pygame.time.get_ticks() - grid_shown_at >= consts.GRID_DURATION_MS:
-                grid_visible = False
+        # הבדיקה והציור קורים פעם אחת בכל סיבוב לולאה, לא בתוך לולאת האירועים
+        if grid_visible and pygame.time.get_ticks() - grid_shown_at >= consts.GRID_DURATION_MS:
+            grid_visible = False
 
-            if grid_visible:
-                screen.draw_lasereye_game()
-            else:
-                screen.draw_day_game()
-            pygame.display.flip()
+        if grid_visible:
+            screen.draw_lasereye_game((row, col))
+        else:
+            screen.draw_day_game((row, col))
 
 if __name__ == '__main__':
     main()

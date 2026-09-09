@@ -79,17 +79,16 @@ def show_night_soldier(location):
     night_soldier_image = pygame.transform.scale(night_soldier_image,(consts.X_SIZE_SOLDIER,consts.Y_SIZE_SOLDIER))
     laser_screen.blit(night_soldier_image, [location[1] * consts.CELL_SIZE, location[0] * consts.CELL_SIZE])
 
-def draw_day_game():
+def draw_day_game(soldier_loc):
     screen.fill(consts.BACKGROUND_COLOR_BLIND_MINES)
     draw_grass_on_screen()
     draw_flag()
-    show_day_soldier((0,0))
+    show_day_soldier(soldier_loc)
     pygame.display.flip()
 
 
 
-def draw_lasereye_game():
+def draw_lasereye_game(soldier_loc):
     draw_xray_vision_screen()
-    show_night_soldier((0,0))
+    show_night_soldier(soldier_loc)
     pygame.display.flip()
-
