@@ -19,6 +19,8 @@ def create():
         for col in range(consts.BOARD_COLS):
             field_grid[row].append([])
             field_grid[row][col] = consts.FREE
+    field_grid[0][0]=consts.SOLDIER
+
 
 
 def put_mine(row, col_start):
@@ -60,12 +62,17 @@ def put_flag():
             field_grid[col][row] = consts.FLAG
 
 
-def put_soldier():
-    # for row in range(consts.SOLDIER_ROWS):
-    #     for col in range(consts.SOLDIER_COLS):
-    #         field_grid[row][col] = consts.SOLDIER
-    field_grid[0][0]=consts.SOLDIER
+def find_solder():
+    for row in range(consts.BOARD_ROWS):
+        for col in range(consts.BOARD_COLS):
+            if field_grid[row][col] == consts.SOLDIER:
+                return (row, col)
 
+
+def update_soldier(new_loc):
+    old_loc=find_solder()
+    field_grid[old_loc[1]][old_loc[0]]=consts.FREE
+    field_grid[new_loc[1]][new_loc[0]]=consts.SOLDIER
 
 def print_matrix(matrix):
     for row in matrix:
@@ -73,10 +80,10 @@ def print_matrix(matrix):
             print(col, end=" ")
         print()
 
-
 create()
 fill_mines()
 put_flag()
-put_soldier()
+print_matrix(field_grid)
+update_soldier((5,5))
 print_matrix(field_grid)
 # handle_user_events(5,5)

@@ -10,6 +10,7 @@ state = {
     "original_arrow": screen.create_arrow(consts.ARROW_IMG),
     "is_window_open": True,
     "state": consts.RUNNING_STATE,
+
 }
 def main():
     while state["is_window_open"]:
