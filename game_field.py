@@ -2,6 +2,9 @@
 import consts
 import random
 
+import player_action
+# from main import handle_user_events
+
 flag_row = consts.BOARD_ROWS - consts.FLAG_ROWS
 flag_col = consts.BOARD_COLS - consts.FLAG_COLS
 
@@ -16,6 +19,8 @@ def create():
         for col in range(consts.BOARD_COLS):
             field_grid[row].append([])
             field_grid[row][col] = consts.FREE
+    field_grid[0][0]=consts.SOLDIER
+
 
 
 def put_mine(row, col_start):
@@ -35,10 +40,13 @@ def fill_mines():
         x_random = random.randint(consts.SOLDIER_COLS,
                                   consts.BOARD_COLS - 3) - 1
         y_random = random.randint(consts.SOLDIER_ROWS, consts.BOARD_ROWS) - 1
-        if field_grid[y_random][x_random] == consts.FREE and is_free_from_mine(y_random,x_random):
+        if field_grid[y_random][x_random] == consts.FREE and is_free_from_mine(
+                y_random, x_random):
             put_mine(y_random, x_random)
         else:
-            while field_grid[y_random][x_random] != consts.FREE or not is_free_from_mine(y_random,x_random):
+            while field_grid[y_random][
+                x_random] != consts.FREE or not is_free_from_mine(y_random,
+                                                                  x_random):
                 x_random = random.randint(consts.SOLDIER_COLS,
                                           consts.BOARD_COLS)
                 y_random = random.randint(consts.SOLDIER_ROWS,
@@ -54,14 +62,28 @@ def put_flag():
             field_grid[col][row] = consts.FLAG
 
 
+def find_solder():
+    for row in range(consts.BOARD_ROWS):
+        for col in range(consts.BOARD_COLS):
+            if field_grid[row][col] == consts.SOLDIER:
+                return (row, col)
+
+
+def update_soldier(new_loc):
+    old_loc=find_solder()
+    field_grid[old_loc[1]][old_loc[0]]=consts.FREE
+    field_grid[new_loc[1]][new_loc[0]]=consts.SOLDIER
+
 def print_matrix(matrix):
     for row in matrix:
         for col in row:
             print(col, end=" ")
         print()
 
-
 create()
 fill_mines()
 put_flag()
-#print_matrix(field_grid)
+print_matrix(field_grid)
+update_soldier((5,5))
+print_matrix(field_grid)
+# handle_user_events(5,5)
