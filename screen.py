@@ -1,4 +1,3 @@
-import time
 import pygame
 import consts
 import random
@@ -86,12 +85,11 @@ def draw_day_game():
     draw_flag()
     show_day_soldier((0,0))
     pygame.display.flip()
-    time.sleep(3)
-draw_day_game()
+
+
 
 def draw_lasereye_game():
     draw_xray_vision_screen()
     show_night_soldier((0,0))
     pygame.display.flip()
-    time.sleep(3)
-#draw_lasereye_game()
+
