@@ -1,10 +1,16 @@
 # consts.py
-
+GRASS_IMAGE='bin/bin/grass.png'
+FLAG_IMAGE='bin/bin/flag.png'
+MINE_IMAGE='bin/bin/mine.png'
+SOLDIER_IMAGE='bin/bin/soldier.png'
+SOLDIER_NIGHT_IMAGE='bin/bin/soldier_night.png'
 BOARD_ROWS = 25
 BOARD_COLS = 50
 CELL_SIZE = 20 # pixels per cell
 WINDOW_WIDTH = BOARD_COLS * CELL_SIZE
 WINDOW_HEIGHT = BOARD_ROWS * CELL_SIZE
+
+GRID_DURATION_MS=1000
 
 #soldier
 SOLDIER_ROWS = 4

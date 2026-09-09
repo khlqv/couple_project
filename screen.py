@@ -16,7 +16,7 @@ def random_y():
     return y
 
 def draw_grass_on_screen():
-    image_grass= pygame.image.load('C:\\Users\\jbt\\Downloads\\couple_project\\couple_project\\bin\\bin\\grass.png')
+    image_grass= pygame.image.load(consts.GRASS_IMAGE)
     image_grass=pygame.transform.scale(image_grass,(consts.GRASS_WIDTH,consts.GRASS_HEIGHT))
     for index in range(consts.MINES_COUNT):
         screen.blit(image_grass,[random_x(),random_y()])
@@ -24,7 +24,7 @@ def draw_grass_on_screen():
 
 def draw_flag():
     # get img, save and transform
-    image_grass= pygame.image.load('C:\\Users\\jbt\\Downloads\\couple_project\\couple_project\\bin\\bin\\flag.png')
+    image_grass= pygame.image.load(consts.FLAG_IMAGE)
     flag_image=pygame.transform.scale(image_grass,(consts.X_SIZE_FLAG,consts.Y_SIZE_FLAG))
     #put him on a const place
     screen.blit(flag_image, [consts.WINDOW_WIDTH - consts.X_SIZE_FLAG,consts.WINDOW_HEIGHT- consts.Y_SIZE_FLAG])
@@ -54,7 +54,7 @@ def draw_xray_vision_screen():
     # show soldier
 
     # show mines
-    mine_image=pygame.image.load('C:\\Users\\jbt\\PycharmProjects\\couple_project\\bin\\bin\\mine.png')
+    mine_image=pygame.image.load(consts.MINE_IMAGE)
     mine_image = pygame.transform.scale(mine_image, (consts.X_SIZE_MINE,consts.Y_SIZE_MINE))
     count=0
     for i in range(consts.BOARD_ROWS):
@@ -69,13 +69,13 @@ def draw_xray_vision_screen():
 
 
 def show_day_soldier(location):
-    soldier_image = pygame.image.load('C:\\Users\\jbt\\Downloads\\couple_project\\couple_project\\bin\\bin\\soldier.png')
+    soldier_image = pygame.image.load(consts.SOLDIER_IMAGE)
     soldier_image = pygame.transform.scale(soldier_image,(consts.X_SIZE_SOLDIER,consts.Y_SIZE_SOLDIER))
     screen.blit(soldier_image, [location[1] * consts.CELL_SIZE,location[0] * consts.CELL_SIZE])
 
 
 def show_night_soldier(location):
-    night_soldier_image = pygame.image.load('C:\\Users\\jbt\\Downloads\\couple_project\\couple_project\\bin\\bin\\soldier_night.png')
+    night_soldier_image = pygame.image.load(consts.SOLDIER_NIGHT_IMAGE)
     night_soldier_image = pygame.transform.scale(night_soldier_image,(consts.X_SIZE_SOLDIER,consts.Y_SIZE_SOLDIER))
     laser_screen.blit(night_soldier_image, [location[1] * consts.CELL_SIZE, location[0] * consts.CELL_SIZE])
 
