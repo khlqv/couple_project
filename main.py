@@ -1,5 +1,5 @@
 import pygame
-
+import game_field
 import consts
 import screen
 from os import environ
@@ -13,8 +13,8 @@ state = {
 }
 def main():
     while state["is_window_open"]:
-        handle_user_events()
-    screen.draw_game(state)
+        handle_user_events(game_field.find_solder())
+
 
 
 def handle_user_events(solider_loc):
@@ -38,7 +38,20 @@ def handle_user_events(solider_loc):
                     col -= 1
                 if event.key in (pygame.K_RIGHT, pygame.K_d):
                     row -= 1
+            grid_visible = False  # האם כרגע מציגים את מסך המוקשים
+            grid_shown_at = 0
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                grid_visible = True
+                grid_shown_at = pygame.time.get_ticks()
 
+            if grid_visible and pygame.time.get_ticks() - grid_shown_at >= consts.GRID_DURATION_MS:
+                grid_visible = False
+
+            if grid_visible:
+                screen.draw_lasereye_game()
+            else:
+                screen.draw_day_game()
+            pygame.display.flip()
 
 if __name__ == '__main__':
     main()
