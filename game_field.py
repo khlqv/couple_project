@@ -3,6 +3,7 @@ import consts
 import random
 
 import player_action
+
 # from main import handle_user_events
 
 flag_row = consts.BOARD_ROWS - consts.FLAG_ROWS
@@ -10,6 +11,19 @@ flag_col = consts.BOARD_COLS - consts.FLAG_COLS
 
 field_grid = []
 
+grass_positions = []
+
+def generate_grass_positions():
+    global grass_positions
+    grass_positions = []
+    for _ in range(consts.MINES_COUNT):
+        x = random.randrange(consts.WINDOW_WIDTH)
+        y = random.randrange(consts.WINDOW_HEIGHT)
+        grass_positions.append((x, y))
+
+def generate_mines_positions():
+    mine_position_lst=fill_mines()
+    return mine_position_lst
 
 # create matrix 20 on 50 and inserts free
 def create():
@@ -19,8 +33,7 @@ def create():
         for col in range(consts.BOARD_COLS):
             field_grid[row].append([])
             field_grid[row][col] = consts.FREE
-    field_grid[0][0]=consts.SOLDIER
-
+    field_grid[0][0] = consts.SOLDIER
 
 
 def put_mine(row, col_start):
@@ -36,6 +49,7 @@ def is_free_from_mine(row, col):
 
 
 def fill_mines():
+    pos=[]
     for i in range(consts.MINES_COUNT):
         x_random = random.randint(consts.SOLDIER_COLS,
                                   consts.BOARD_COLS - 3) - 1
@@ -43,6 +57,7 @@ def fill_mines():
         if field_grid[y_random][x_random] == consts.FREE and is_free_from_mine(
                 y_random, x_random):
             put_mine(y_random, x_random)
+            pos.append((x_random,y_random))
         else:
             while field_grid[y_random][
                 x_random] != consts.FREE or not is_free_from_mine(y_random,
@@ -52,7 +67,8 @@ def fill_mines():
                 y_random = random.randint(consts.SOLDIER_ROWS,
                                           consts.BOARD_ROWS)
             put_mine(y_random, x_random)
-
+            pos.append((x_random,y_random))
+    return pos
 
 def put_flag():
     for row in range(consts.BOARD_COLS - consts.FLAG_COLS,
@@ -63,24 +79,24 @@ def put_flag():
 
 
 def find_solder():
-    x=0
-    y=0
+    row_r = 0
+    col_r = 0
     for row in range(consts.BOARD_ROWS):
         for col in range(consts.BOARD_COLS):
             if field_grid[row][col] == consts.SOLDIER:
-                x=col
-                y=row
-    return (y,x)
+                row_r = row
+                col_r = col
+    return row_r, col_r
 
 
 def update_soldier(new_loc):
-    old_loc=find_solder()
-    field_grid[old_loc[1]][old_loc[0]]=consts.FREE
-    field_grid[new_loc[1]][new_loc[0]]=consts.SOLDIER
+    old_loc = find_solder()
+    field_grid[old_loc[1]][old_loc[0]] = consts.FREE
+    field_grid[new_loc[1]][new_loc[0]] = consts.SOLDIER
+
 
 def print_matrix(matrix):
     for row in matrix:
         for col in row:
             print(col, end=" ")
         print()
-

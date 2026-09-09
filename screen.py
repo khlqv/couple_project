@@ -18,8 +18,8 @@ def random_y():
 def draw_grass_on_screen():
     image_grass= pygame.image.load(consts.GRASS_IMAGE)
     image_grass=pygame.transform.scale(image_grass,(consts.GRASS_WIDTH,consts.GRASS_HEIGHT))
-    for index in range(consts.MINES_COUNT):
-        screen.blit(image_grass,[random_x(),random_y()])
+    for pos in game_field.grass_positions:
+        screen.blit(image_grass, pos)
 
 
 def draw_flag():
@@ -45,14 +45,7 @@ def draw_xray_vision_screen():
         pygame.draw.line(laser_screen, consts.LASERS_COLOR, (x, 0),
                             (x, consts.WINDOW_HEIGHT))
 
-    for row in range(consts.BOARD_ROWS):
-        for col in range(consts.BOARD_COLS):
-            pygame.draw.line(laser_screen, consts.LASERS_COLOR, (row, 0),(row, consts.WINDOW_WIDTH))
-            pygame.draw.line(laser_screen, consts.LASERS_COLOR, (0, col),(row, consts.WINDOW_HEIGHT))
-    # show flag
     draw_flag()
-    # show soldier
-
     # show mines
     mine_image=pygame.image.load(consts.MINE_IMAGE)
     mine_image = pygame.transform.scale(mine_image, (consts.X_SIZE_MINE,consts.Y_SIZE_MINE))
