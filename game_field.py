@@ -3,6 +3,7 @@ import consts
 import random
 
 import player_action
+# from main import handle_user_events
 
 flag_row = consts.BOARD_ROWS - consts.FLAG_ROWS
 flag_col = consts.BOARD_COLS - consts.FLAG_COLS
@@ -60,9 +61,10 @@ def put_flag():
 
 
 def put_soldier():
-    for row in range(consts.SOLDIER_ROWS):
-        for col in range(consts.SOLDIER_COLS):
-            field_grid[row][col] = consts.SOLDIER
+    # for row in range(consts.SOLDIER_ROWS):
+    #     for col in range(consts.SOLDIER_COLS):
+    #         field_grid[row][col] = consts.SOLDIER
+    field_grid[0][0]=consts.SOLDIER
 
 
 def print_matrix(matrix):
@@ -76,8 +78,5 @@ create()
 fill_mines()
 put_flag()
 put_soldier()
-# print_matrix(field_grid)
-
-for row in field_grid:
-    print(row)
-exit()
+print_matrix(field_grid)
+# handle_user_events(5,5)
