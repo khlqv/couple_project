@@ -46,6 +46,7 @@ def draw_xray_vision_screen():
                             (x, consts.WINDOW_HEIGHT))
 
     draw_flag()
+
     # show mines
     mine_image=pygame.image.load(consts.MINE_IMAGE)
     mine_image = pygame.transform.scale(mine_image, (consts.X_SIZE_MINE,consts.Y_SIZE_MINE))
@@ -85,3 +86,12 @@ def draw_lasereye_game(soldier_loc):
     draw_xray_vision_screen()
     show_night_soldier(soldier_loc)
     pygame.display.flip()
+
+
+
+
+def draw_message(message, font_size, color, location):
+    font = pygame.font.SysFont(consts.FONT_NAME, font_size)
+    text_img = font.render(message, True, color)
+    screen.blit(text_img, location)
+

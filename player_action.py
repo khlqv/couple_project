@@ -12,3 +12,4 @@ def does_touch_mine(field_grid,soldier_location):
         if field_grid[tuple_loc[1]][tuple_loc[0]] == consts.MINE:
                 return True
     return False
+
