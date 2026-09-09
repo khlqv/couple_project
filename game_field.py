@@ -63,10 +63,14 @@ def put_flag():
 
 
 def find_solder():
+    x=0
+    y=0
     for row in range(consts.BOARD_ROWS):
         for col in range(consts.BOARD_COLS):
             if field_grid[row][col] == consts.SOLDIER:
-                return (row, col)
+                x=col
+                y=row
+    return (y,x)
 
 
 def update_soldier(new_loc):
