@@ -5,6 +5,7 @@ import player_action
 import screen
 from os import environ
 import soldier
+import time
 
 environ['PYGAME_HIDE_SUPPORT_PROMPT']='1'
 pygame.init()
@@ -53,6 +54,7 @@ def main():
                         grid_shown_at = pygame.time.get_ticks()
 
 
+
         if state["state"] == consts.RUNNING_STATE:
             game_field.update_soldier((row, col))
 
@@ -64,23 +66,23 @@ def main():
 
             if player_action.does_touch_mine(game_field.field_grid, feet_cells):
                 state["state"] = consts.LOSE_STATE
-                # try:
-                #     #consts.LOSE_SOUND.play()
-                # except AttributeError:
-                #     pass
+                try:
+                    consts.LOSE_SOUND.play()
+                except AttributeError:
+                    pass
 
             elif player_action.does_touch_flag(game_field.field_grid, body_cells):
                 state["state"] = consts.WIN_STATE
- #               try:
-#consts.WIN_SOUND.play()
-                # except AttributeError:
-                #     pass
+                try:
+                    consts.WIN_SOUND.play()
+                except AttributeError:
+                    pass
 
         if grid_visible:
             screen.draw_lasereye_game((row, col))
+            time.sleep(1)
         else:
             screen.draw_day_game((row, col))
-
         if state["state"] == consts.WIN_STATE:
             screen.draw_message(consts.WIN_MESSAGE, consts.WIN_FONT_SIZE, consts.WIN_COLOR, consts.WIN_LOCATION)
             pygame.display.flip()

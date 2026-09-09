@@ -91,8 +91,8 @@ def find_solder():
 
 def update_soldier(new_loc):
     old_loc = find_solder()
-    field_grid[old_loc[1]][old_loc[0]] = consts.FREE
-    field_grid[new_loc[1]][new_loc[0]] = consts.SOLDIER
+    field_grid[old_loc[0]][old_loc[1]] = consts.FREE
+    field_grid[new_loc[0]][new_loc[1]] = consts.SOLDIER
 
 
 def print_matrix(matrix):

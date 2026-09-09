@@ -71,5 +71,7 @@ FLAG_SIZE= (FLAG_COLS * FLAG_ROWS) * CELL_SIZE
 X_SIZE_FLAG = FLAG_COLS * CELL_SIZE
 Y_SIZE_FLAG = FLAG_ROWS * CELL_SIZE
 
-WIN_SOUND=pygame.mixer.Sound('couple_project/win_sound.mp3')
-LOSE_SOUND=pygame.mixer.Sound('couple_project/lose_sound.mp3')
+pygame.mixer.init()
+
+WIN_SOUND=pygame.mixer.Sound('win_sound.mp3')
+LOSE_SOUND=pygame.mixer.Sound('lose_sound.mp3')
